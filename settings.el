@@ -24,6 +24,13 @@
 
 ;; Line Number Mode
 (line-number-mode 1)
+;(global-linum-mode t)
+(global-nlinum-mode 1)
+(add-hook 'nlinum-mode-hook
+          (lambda ()
+            (setq nlinum--width
+                  (length (number-to-string
+                           (+ (count-lines (point-min) (point-max)) 1 ))))))
 
 ;; Mark Parenteses
 (show-paren-mode 1)
@@ -114,3 +121,7 @@
   ;; Use the xterm color initialization code.
   ;;(xterm-register-default-colors)
   (tty-set-up-initial-frame-faces))
+
+;; Default Browser
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "firefox-developer")
